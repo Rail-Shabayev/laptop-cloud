@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/profile.css" th:href="@{../css/profile.css}">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <title>Laptop Cloud</title>
+</head>
+<body>
+<header id="header">
+    <a href="/">
+        <img id="header-img"
+             src="https://www.freepnglogos.com/uploads/hacker-png/hacker-png-images-download-crazypngm-crazy-20.png"/>
+    </a>
+    <div id="nav-bar">
+        <a class="nav-link" href="http://localhost:8080/profile">Профиль</a>
+        <a class="nav-link" href="http://localhost:8080/favouritesList">Избранное</a>
+        <a class="nav-link" href="http://localhost:8080/cart">Корзина</a>
+    </div>
+</header>
+<section id="main-section">
+    <form method="get" th:object="${user}">
+        <div>
+            <h3>Никнейм пользователя:</h3>
+            <span class="text-center" th:text="${user.username}">username</span>
+        </div>
+        <div>
+            <h3>Остальные данные:</h3>
+            <span class="text-center" th:text="${user.fullname}">---------</span></br>
+            <span class="text-center" th:text="${user.city}">---------</span></br>
+            <span class="text-center" th:text="${user.phoneNumber}">phoneNumber</span></br>
+        </div>
+    </form>
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+        <input class="btn btn2" type="submit" value="Logout"/>
+    </form>
+    <form method="POST" th:action="@{/profile}" id="deleteForm">
+        <input class="btn btn2" type="submit" value="Delete account"/>
+    </form>
+</section>
+<section id="orders">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Город</th>
+            <th>Название доставки</th>
+            <th>Район</th>
+            <th>Улица</th>
+            <th>Почтовый индекс</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orderList}"></br>
+            <td th:text="${order.deliveryCity}">-</td>
+            <td th:text="${order.deliveryName}">-</td>
+            <td th:text="${order.deliveryState}">-</td>
+            <td th:text="${order.deliveryStreet}">-</td>
+            <td th:text="${order.deliveryZip}">-</td>
+            <td><a th:href="@{/profile/showFormForUpdate/{id}(id=${order.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/profile/deleteOrder/{id}(id=${order.id})}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

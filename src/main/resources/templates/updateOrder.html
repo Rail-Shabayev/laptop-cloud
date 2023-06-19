@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Update</title>
+</head>
+<body>
+<div class="container">
+    <hr>
+    <h2>Измените заказ</h2>
+    <a href="/profile">Вернуться к профилю</a>
+    <form action="#" th:action="@{/profile/saveOrder}" th:object="${order}"
+          method="POST">
+
+        <input type="hidden" th:field="*{id}"/>
+        <label>Название доставки</label>
+        <input type="text" th:field="*{deliveryName}" class="form-control mb-4 col-4">
+        <label>Название улицы</label>
+        <input type="text" th:field="*{deliveryStreet}" class="form-control mb-4 col-4">
+        <label>Название города</label>
+
+        <input type="text" th:field="*{deliveryCity}" class="form-control mb-4 col-4">
+        <label>Название района</label>
+        <input type="text" th:field="*{deliveryState}" class="form-control mb-4 col-4">
+        <label>Почтовый индекс</label>
+        <input type="text" th:field="*{deliveryZip}" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Обновить</button>
+    </form>
+    <hr>
+</div>
+</body>
+</html>

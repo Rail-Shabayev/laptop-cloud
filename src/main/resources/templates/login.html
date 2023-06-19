@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ln="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/login.css" th:href="@{../css/login.css}">
+    <title>Laptop Cloud</title>
+</head>
+
+<body>
+<header id="header">
+    <a href="/">
+        <img id="header-img"
+             src="https://www.freepnglogos.com/uploads/hacker-png/hacker-png-images-download-crazypngm-crazy-20.png"/>
+    </a>
+    <div id="nav-bar">
+        <a class="nav-link" href="http://localhost:8080/profile">Профиль</a>
+        <a class="nav-link" href="http://localhost:8080/favouritesList">Избранное</a>
+        <a class="nav-link" href="http://localhost:8080/cart">Корзина</a>
+    </div>
+</header>
+<section id="main">
+    <h1>Вход</h1>
+
+    <div th:if="${error}">
+        Unable to login. Check your username and password.
+    </div>
+    <section id="login-input">
+        <p class="register-link">Нажмите
+            <a class="register-link" th:href="@{/register}">здесь</a> для регистрации.</p>
+        <form method="post" th:action="@{/login}" id="loginForm">
+            <label class="data-input" for="username">Имя: <input type="text" name="username" id="username"/><br/>
+            </label>
+            <label class="data-input" for="password">Пароль: <input type="password" name="password" id="password"/><br/></label>
+            <input id="submit-but" type="submit" value="Войти"/>
+        </form>
+    </section>
+</section>
+</body>
+</html>
